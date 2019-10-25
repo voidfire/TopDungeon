@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;
 	private void Awake() {
 		instance = this;
-		SceneManager.sceneLoaded += SaveState;
+		SceneManager.sceneLoaded += LoadState;
 	}
 	public List<Sprite> playerSprites;
 	public List<Sprite> weaponSprites;
@@ -19,10 +19,11 @@ public class GameManager : MonoBehaviour {
 	 public int pesos;
 	 public int experience;
 
-	 public void SaveState(Scene s, LoadSceneMode mode) {
+	 public void SaveState() {
 		 Debug.Log("Save State");
 	 }
-	 public void LoadState() {
+	 public void LoadState(Scene s, LoadSceneMode mode) {
+		SceneManager.sceneLoaded -= LoadState;
 		 Debug.Log("Load State");
 	 }
 }
