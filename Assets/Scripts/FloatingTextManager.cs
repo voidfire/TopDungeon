@@ -19,13 +19,13 @@ public class FloatingTextManager : MonoBehaviour {
 		floatingText.txt.text = msg;
 		floatingText.txt.fontSize = fontSize;
 		floatingText.txt.color = color;
-		floatingText.txt.transform.position = Camera.main.WorldToScreenPoint(position); // Transfer world spavce to screen space so we can use it in UI
+		floatingText.txt.transform.position = Camera.main.WorldToScreenPoint(position); // Transfer world space to screen space so we can use it in UI
 		floatingText.motion = motion;
 		floatingText.duration = duration;
-		floatingText.Hide();
+		floatingText.Show();
 	}
 
-	private FloatingText GetFloatingText(){
+	private FloatingText GetFloatingText() {
 		FloatingText txt = floatingTexts.Find(t => !t.active);
 
 		if (txt == null) {
