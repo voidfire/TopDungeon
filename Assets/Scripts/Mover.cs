@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Mover : Fighter {
-	private BoxCollider2D boxCollider;
+	protected BoxCollider2D boxCollider;
 	private Vector3 moveDelta;
 	private RaycastHit2D hit;
 	public Rigidbody2D rb;
 	protected float ySpeed = 0.75f;
 	protected float xSpeed = 1.0f;
+
 	protected virtual void Start () {
 		boxCollider = GetComponent<BoxCollider2D>();
 	}
@@ -29,8 +30,7 @@ public abstract class Mover : Fighter {
 								Mathf.Abs(moveDelta.y * Time.deltaTime),
 								LayerMask.GetMask("Actor", "Blocking"));
 
-		if (hit.collider == null)
-		{
+		if (hit.collider == null) {
 			transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
 		}
 		// Make sure we can move by casting a box there first, if the box returns null, we are free to move
@@ -39,8 +39,7 @@ public abstract class Mover : Fighter {
 								Mathf.Abs(moveDelta.x * Time.deltaTime), 
 								LayerMask.GetMask("Actor", "Blocking"));
 								
-		if (hit.collider == null)
-		{
+		if (hit.collider == null) {
 			transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
 		}
 	}

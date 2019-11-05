@@ -11,7 +11,7 @@ public class CameraMotor : MonoBehaviour {
 		Vector3 delta = Vector3.zero;
 
 		float deltaX = lookAt.position.x - transform.position.x;
-		if(deltaX > boundX || deltaX < -boundX ) {
+		if (deltaX > boundX || deltaX < -boundX ) {
 			if (transform.position.x < lookAt.position.x) {
 				delta.x = deltaX - boundX;
 			} else {
@@ -20,7 +20,7 @@ public class CameraMotor : MonoBehaviour {
 		}
 
 		float deltaY = lookAt.position.y - transform.position.y;
-		if(deltaY > boundY || deltaY < -boundY ) {
+		if (deltaY > boundY || deltaY < -boundY ) {
 			if (transform.position.y < lookAt.position.y) {
 				delta.y = deltaY - boundY;
 			} else {
@@ -28,6 +28,6 @@ public class CameraMotor : MonoBehaviour {
 			}
 		}
 
-		transform.position += new Vector3(delta.x, delta.y,0);
+		transform.position += new Vector3(delta.x, delta.y, 0);
 	}
 }

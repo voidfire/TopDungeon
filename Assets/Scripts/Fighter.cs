@@ -6,10 +6,9 @@ public class Fighter : MonoBehaviour {
 
 	public int hitPoint = 10;
 	public int maxHitPoint= 10;
-	public float  pushRecoverySpeed = 0.2f;
+	public float pushRecoverySpeed = 0.2f;
 	protected float immuneTime = 1.0f;
 	protected float lastImmune;
-
 	protected Vector3 pushDirection;
 
 	// All fighters can Receive Damage / Die

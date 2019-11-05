@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+
 public class FloatingText {
 	public bool active;
 	public GameObject go;
@@ -13,10 +14,12 @@ public class FloatingText {
 		lastShown = Time.time;
 		go.SetActive(active);
 	}
+
 	public void Hide() {
 		active = false;
 		go.SetActive(active);
 	}
+
 	public void UpdateFloatingText() {
 		if (!active)
 			return;

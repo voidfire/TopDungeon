@@ -2,29 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour {
 	public static GameManager instance;
-	private void Awake() {
-		instance = this;
-		SceneManager.sceneLoaded += LoadState;
-	}
 	public List<Sprite> playerSprites;
 	public List<Sprite> weaponSprites;
 	public List<int> weaponPrices;
 	public List<int> xpTable;
-
 	// References
 	public Player player;
-	// public weapon weapon...
 	public FloatingTextManager floatingTextManager;
-
-// Logic
+	// Logic
 	public int pesos;
 	public int experience;
 
 	// 	Floating text
 	public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) {
 		floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+	}
+
+	private void Awake() {
+		instance = this;
+		SceneManager.sceneLoaded += LoadState;
 	}
 
 	// Save state
