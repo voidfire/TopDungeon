@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	public List<int> xpTable;
 	// References
 	public Player player;
+	public Weapon weapon;
 	public FloatingTextManager floatingTextManager;
 	// Logic
 	public int pesos;
@@ -19,6 +20,21 @@ public class GameManager : MonoBehaviour {
 	// 	Floating text
 	public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) {
 		floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+	}
+
+	// Upgrade Weapon
+	public bool TryUpgradeWeapon() {
+		// is weapon Max Lvl?
+		if (weaponPrices.Count <= weapon.weaponLevel)
+			return false;
+		
+		if (pesos >= weaponPrices[weapon.weaponLevel]) {
+			pesos -= weaponPrices[weapon.weaponLevel];
+			weapon.UpgradeWeapon();
+			return true;
+		}
+
+		return false;
 	}
 
 	private void Awake() {
@@ -39,7 +55,7 @@ public class GameManager : MonoBehaviour {
 		s += "0" + "|";
 		s += pesos.ToString() + "|";
 		s += experience.ToString() + "|";
-		s += "0";
+		s += weapon.weaponLevel.ToString() + "|";
 		PlayerPrefs.SetString("SaveState", s);
 	 }
 	 
@@ -53,7 +69,9 @@ public class GameManager : MonoBehaviour {
 		// Load Stats
 		pesos = int.Parse(data[1]);
 		experience = int.Parse(data[2]);
+
 		// Change weapon Level
+		weapon.SetWeaponLevel(int.Parse(data[3]));
 
 		// 0|10|15|2
 		SceneManager.sceneLoaded -= LoadState;
